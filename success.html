@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBT Business School - Guía Enviada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Elementos decorativos de fondo */
+        .bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border: 5px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: -3%;
+            animation-delay: 2s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .success-container {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        /* Estilos del logo */
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            max-height: 80px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            font-size: 3rem;
+            color: #1a1a1a;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .success-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        .success-message {
+            font-size: 1.3rem;
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .success-message strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .info-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            color: #d4af37;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1a1a1a;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-info h4 {
+            color: #d4af37;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin: 8px 0;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            
+            .success-title {
+                font-size: 2.5rem;
+            }
+            
+            .success-message {
+                font-size: 1.1rem;
+            }
+            
+            .logo img {
+                max-height: 60px;
+            }
+
+            .success-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+
+            .info-box {
+                padding: 20px;
+            }
+
+            .back-button {
+                padding: 15px 30px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .success-container {
+                padding: 30px 20px;
+            }
+            
+            .success-title {
+                font-size: 2rem;
+            }
+            
+            .success-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Elementos decorativos de fondo -->
+        <div class="bg-elements">
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+        </div>
+
+        <div class="success-container">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="./resource/Imagen5.png" alt="IBT Business School">
+            </div>
+            
+            <!-- Icono de éxito -->
+            <div class="success-icon">✓</div>
+            
+            <!-- Título -->
+            <h1 class="success-title">¡Guía Enviada!</h1>
+            
+            <!-- Mensaje principal -->
+            <p class="success-message">
+                ¡Excelente! Hemos recibido tu solicitud correctamente.<br>
+                Tu guía sobre <strong>"¿Quieres Trabajar en la Inteligencia Artificial?"</strong><br>
+                será enviada a tu correo electrónico en los próximos minutos.
+            </p>
+            
+            <!-- Información adicional -->
+            <div class="info-box">
+                <h3>🚀 ¿Qué sigue ahora?</h3>
+                <p>Nuestro equipo especializado en emprendimiento y tecnología revisará tu perfil y te contactará en las próximas 24 horas para brindarte información personalizada sobre nuestros programas.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📧 Revisa tu correo electrónico</h3>
+                <p>En unos minutos recibirás tu guía gratuita en tu bandeja de entrada. Si no la encuentras, revisa la carpeta de spam o promociones.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>💡 El futuro de tu negocio comienza AQUÍ</h3>
+                <p>Prepárate para descubrir las oportunidades que la Inteligencia Artificial puede ofrecerte como emprendedor. ¡Tu éxito está a punto de comenzar!</p>
+            </div>
+            
+            <!-- Botón de regreso -->
+            <a href="./index.html" class="back-button">Volver al inicio</a>
+
+            <!-- Información de contacto -->
+            <div class="contact-info">
+                <h4>¿Tienes alguna pregunta?</h4>
+                <p>📧 info@edu-ibt.com</p>
+                <p>📱 +593 0982184871</p>
+                <p>🕒 Lun - Vie: 9:00 AM - 6:00 PM</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
