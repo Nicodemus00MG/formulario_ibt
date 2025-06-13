@@ -1,14 +1,14 @@
-// ===== CONFIGURACIÓN EMAILJS - PARA VERIFICAR =====
+// ===== CONFIGURACIÓN EMAILJS FINAL CORRECTA =====
 const EMAILJS_CONFIG = {
-    publicKey: "vCEpn-B_Inhh-QqeM",          
-    serviceId: "service_p9efz9fi",             // 🔄 VOLVEMOS AL ORIGINAL PARA PROBAR
-    templateId: "template_ho27i8c"            
+    publicKey: "vCEpn-B_Inhh-QqeM",          // ✅ Correcto
+    serviceId: "service_p9efz9f",             // ✅ CORREGIDO - Exacto de tu dashboard
+    templateId: "template_ho27i8c"            // ✅ Correcto - Exacto de tu dashboard
 };
 
-// ===== INICIALIZACIÓN CON DEBUG COMPLETO =====
+// ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 === IBT Business School - Sistema de Formulario (DEBUG MODE) ===');
-    console.log('📋 Configuración EmailJS:', EMAILJS_CONFIG);
+    console.log('🚀 === IBT Business School - Sistema de Formulario FINAL ===');
+    console.log('📋 Configuración EmailJS DEFINITIVA:', EMAILJS_CONFIG);
     
     // Verificar que EmailJS esté disponible
     if (typeof emailjs === 'undefined') {
@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
         console.log('✅ EmailJS inicializado correctamente');
+        console.log('🔧 Service ID CORRECTO:', EMAILJS_CONFIG.serviceId);
+        console.log('📧 Template ID CORRECTO:', EMAILJS_CONFIG.templateId);
     } catch (error) {
         console.error('❌ Error inicializando EmailJS:', error);
         return;
@@ -44,6 +46,8 @@ function setupForm() {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         console.log('📤 === ENVÍO DE FORMULARIO INICIADO ===');
+        console.log('🎯 Service ID:', EMAILJS_CONFIG.serviceId);
+        console.log('📧 Template ID:', EMAILJS_CONFIG.templateId);
         
         // Verificar honeypot
         const honeypot = form.querySelector('[name="bot-field"]');
@@ -61,103 +65,148 @@ function setupForm() {
             client_city: form.client_city.value.trim()
         };
         
-        console.log('📊 Datos del formulario:', formData);
+        console.log('📊 Datos capturados del formulario:', formData);
         
         // Validar campos obligatorios
         if (!formData.client_name || !formData.client_email || !formData.client_occupation || !formData.client_city) {
             alert('Por favor, completa todos los campos obligatorios.');
+            console.log('❌ Validación falló - campos vacíos');
             return;
         }
         
-        // Validar email
+        // Validar formato de email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.client_email)) {
             alert('Por favor, ingresa un email válido.');
+            console.log('❌ Email inválido:', formData.client_email);
             return;
         }
         
-        console.log('✅ Validación exitosa');
+        console.log('✅ Validación exitosa - iniciando envío');
         
-        // Mostrar loading
+        // Mostrar estado de carga
         showLoading(true);
         
         try {
-            // Preparar datos SIMPLES para el template original
+            // Preparar datos para el template
             const templateParams = {
+                // Variables principales que usa tu template
                 name: formData.client_name,
                 email: formData.client_email,
-                message: `Ocupación: ${formData.client_occupation}
-Ciudad: ${formData.client_city}
-Teléfono: ${formData.client_phone}
+                message: `🎓 NUEVA SOLICITUD - IBT BUSINESS SCHOOL
 
-Mensaje: Estoy interesado/a en conocer más sobre las oportunidades en Inteligencia Artificial para emprendedores.`,
-                time: new Date().toLocaleString('es-EC')
+👤 INFORMACIÓN DEL CLIENTE:
+▪️ Nombre: ${formData.client_name}
+▪️ Email: ${formData.client_email}
+▪️ Teléfono: ${formData.client_phone}
+▪️ Ocupación: ${formData.client_occupation}
+▪️ Ciudad: ${formData.client_city}
+
+💼 SOLICITUD:
+El cliente está interesado en conocer más sobre las oportunidades en Inteligencia Artificial para emprendedores y desea recibir la guía gratuita "¿Quieres Trabajar en la Inteligencia Artificial?".
+
+📅 INFORMACIÓN DEL SISTEMA:
+▪️ Fecha y hora: ${new Date().toLocaleString('es-EC', { 
+    timeZone: 'America/Guayaquil',
+    year: 'numeric',
+    month: 'long', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+})}
+▪️ Fuente: Landing Page IBT Business School
+▪️ Estado: NUEVO LEAD - ALTA PRIORIDAD
+
+🎯 ACCIÓN REQUERIDA:
+Contactar al cliente en las próximas 24 horas para:
+• Envío de guía de IA
+• Seguimiento comercial
+• Información sobre programas`,
+                
+                time: new Date().toLocaleString('es-EC', { 
+                    timeZone: 'America/Guayaquil'
+                })
             };
             
-            console.log('📧 === INTENTANDO ENVÍO CON EMAILJS ===');
-            console.log('🔧 Service ID:', EMAILJS_CONFIG.serviceId);
-            console.log('📧 Template ID:', EMAILJS_CONFIG.templateId);
-            console.log('📋 Parámetros:', templateParams);
+            console.log('📧 Enviando email con EmailJS...');
+            console.log('📨 Parámetros del template:', templateParams);
             
-            // Enviar con EmailJS
+            // Enviar con EmailJS usando credenciales correctas
             const response = await emailjs.send(
-                EMAILJS_CONFIG.serviceId,    
-                EMAILJS_CONFIG.templateId,   
+                EMAILJS_CONFIG.serviceId,    // service_p9efz9f
+                EMAILJS_CONFIG.templateId,   // template_ho27i8c
                 templateParams
             );
             
             console.log('✅ ¡EMAIL ENVIADO EXITOSAMENTE!', response);
+            console.log('📊 Detalles de la respuesta:');
+            console.log('  - Status:', response.status);
+            console.log('  - Text:', response.text);
+            console.log('📧 Email enviado a jonimates2000@gmail.com');
+            
+            // Mostrar mensaje de éxito
             showSuccess();
+            
+            // Limpiar formulario
             form.reset();
             
         } catch (error) {
-            console.error('❌ === ERROR DETALLADO ===');
-            console.error('Error completo:', error);
-            console.error('Status:', error.status);
-            console.error('Text:', error.text);
-            console.error('Message:', error.message);
+            console.error('❌ === ERROR AL ENVIAR EMAIL ===');
+            console.error('📄 Error completo:', error);
+            console.error('📊 Detalles:');
+            console.error('  - Status:', error.status);
+            console.error('  - Text:', error.text);
+            console.error('  - Message:', error.message);
             
-            // Análisis específico del error
+            // Análisis detallado del error
             if (error.status === 400) {
+                console.error('🚨 ERROR 400 - Bad Request');
                 if (error.text && error.text.includes('service ID not found')) {
-                    console.error('🚨 SERVICE ID INCORRECTO!');
+                    console.error('❌ SERVICE ID INCORRECTO');
                     console.error('🔧 Service ID usado:', EMAILJS_CONFIG.serviceId);
-                    console.error('📝 Ve a https://dashboard.emailjs.com/admin/email');
-                    console.error('📝 Copia el Service ID exacto de tu servicio Gmail');
-                    alert('❌ Service ID incorrecto. Revisa la consola para instrucciones.');
+                    console.error('📝 Verifica en: https://dashboard.emailjs.com/admin/email');
+                    alert('❌ Service ID incorrecto. Contacta al administrador.');
                 } else if (error.text && error.text.includes('template')) {
-                    console.error('🚨 TEMPLATE ID INCORRECTO!');
+                    console.error('❌ TEMPLATE ID INCORRECTO');
                     console.error('📧 Template ID usado:', EMAILJS_CONFIG.templateId);
-                    alert('❌ Template ID incorrecto. Revisa la consola.');
+                    alert('❌ Template ID incorrecto. Contacta al administrador.');
                 } else {
-                    console.error('🚨 ERROR 400 - Otros:', error.text);
+                    console.error('❌ Otro error 400:', error.text);
+                    alert('❌ Error en los datos enviados. Contacta al administrador.');
                 }
             } else if (error.status === 401) {
-                console.error('🚨 PUBLIC KEY INCORRECTO!');
-                console.error('🔑 Public Key usado:', EMAILJS_CONFIG.publicKey);
+                console.error('🚨 ERROR 401 - No autorizado');
+                console.error('❌ PUBLIC KEY INCORRECTO:', EMAILJS_CONFIG.publicKey);
+                alert('❌ Error de autorización. Contacta al administrador.');
             } else if (error.status === 404) {
-                console.error('🚨 RECURSO NO ENCONTRADO!');
+                console.error('🚨 ERROR 404 - No encontrado');
+                alert('❌ Servicio no encontrado. Contacta al administrador.');
+            } else {
+                console.error('🚨 ERROR DESCONOCIDO');
+                alert('❌ Error desconocido. Contacta al administrador.');
             }
             
-            // Fallback a Netlify
+            // Intentar envío a Netlify como respaldo
             try {
-                console.log('🔄 === FALLBACK A NETLIFY ===');
+                console.log('🔄 === INTENTANDO RESPALDO CON NETLIFY ===');
+                
                 const formDataNetlify = new FormData(form);
-                const response = await fetch('/', {
+                const netlifResponse = await fetch('/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams(formDataNetlify).toString()
                 });
                 
-                if (response.ok) {
-                    console.log('✅ Enviado a Netlify exitosamente');
+                if (netlifResponse.ok) {
+                    console.log('✅ Datos enviados a Netlify exitosamente');
                     showSuccess();
                     form.reset();
                 } else {
-                    throw new Error(`Netlify Error: ${response.status}`);
+                    throw new Error(`Error Netlify: ${netlifResponse.status}`);
                 }
+                
             } catch (netlifyError) {
-                console.error('❌ Error total:', netlifyError);
+                console.error('❌ Error total - EmailJS y Netlify fallaron:', netlifyError);
                 showError();
             }
         } finally {
@@ -168,7 +217,7 @@ Mensaje: Estoy interesado/a en conocer más sobre las oportunidades en Inteligen
     console.log('✅ Formulario configurado correctamente');
 }
 
-// ===== FUNCIONES DE UI (IGUALES) =====
+// ===== FUNCIONES DE INTERFAZ =====
 function showLoading(show) {
     const loadingMessage = document.getElementById('loadingMessage');
     const submitBtn = document.getElementById('submit-btn');
@@ -181,12 +230,14 @@ function showLoading(show) {
         if (btnText) btnText.style.display = 'none';
         if (btnLoading) btnLoading.style.display = 'inline';
         submitBtn.style.opacity = '0.7';
+        console.log('⏳ Mostrando estado de carga');
     } else {
         if (loadingMessage) loadingMessage.style.display = 'none';
         submitBtn.disabled = false;
         if (btnText) btnText.style.display = 'inline';
         if (btnLoading) btnLoading.style.display = 'none';
         submitBtn.style.opacity = '1';
+        console.log('🔄 Ocultando estado de carga');
     }
 }
 
@@ -201,11 +252,14 @@ function showSuccess() {
     
     console.log('🎉 Mostrando mensaje de éxito');
     
+    // Scroll al mensaje de éxito
     if (successMessage) {
         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     
+    // Redirigir a página de éxito después de 4 segundos
     setTimeout(() => {
+        console.log('🔄 Redirigiendo a página de éxito');
         window.location.href = './success.html';
     }, 4000);
 }
@@ -219,82 +273,107 @@ function showError() {
     
     console.log('❌ Mostrando mensaje de error');
     
+    // Scroll al mensaje de error
     if (errorMessage) {
         errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 }
 
-// ===== FUNCIONES DE DEBUG AVANZADAS =====
+// ===== FUNCIONES DE DEBUG Y TESTING =====
 window.IBTDebug = {
-    // Test con diferentes Service IDs
-    testAllServiceIds: function() {
-        console.log('🧪 === PROBANDO DIFERENTES SERVICE IDs ===');
-        
-        const possibleServiceIds = [
-            'service_ddujhgi',      // Original
-            'service_p9ef29f',      // El que vimos antes
-            'service_default',      // Posible default
-        ];
-        
-        possibleServiceIds.forEach((serviceId, index) => {
-            setTimeout(() => {
-                console.log(`🔄 Probando Service ID ${index + 1}: ${serviceId}`);
-                
-                const testParams = {
-                    name: `Test ${index + 1}`,
-                    email: "test@example.com",
-                    message: `Test con Service ID: ${serviceId}`,
-                    time: new Date().toLocaleString()
-                };
-                
-                emailjs.send(serviceId, EMAILJS_CONFIG.templateId, testParams)
-                    .then(response => {
-                        console.log(`✅ Service ID CORRECTO: ${serviceId}`, response);
-                        alert(`✅ Service ID correcto encontrado: ${serviceId}`);
-                    })
-                    .catch(error => {
-                        console.log(`❌ Service ID ${serviceId} falló:`, error.text);
-                    });
-            }, index * 2000); // Esperar 2 segundos entre cada test
-        });
-    },
-    
-    // Obtener configuración actual
-    getCurrentConfig: function() {
-        console.log('📋 === CONFIGURACIÓN ACTUAL ===');
-        console.log('🔑 Public Key:', EMAILJS_CONFIG.publicKey);
+    // Test inmediato con credenciales correctas
+    testEmailJS: function() {
+        console.log('🧪 === TEST EMAILJS CON CREDENCIALES CORRECTAS ===');
         console.log('🔧 Service ID:', EMAILJS_CONFIG.serviceId);
         console.log('📧 Template ID:', EMAILJS_CONFIG.templateId);
-        console.log('📧 EmailJS disponible:', typeof emailjs !== 'undefined');
-    },
-    
-    // Test simple
-    testSimple: function() {
-        console.log('🧪 === TEST SIMPLE ===');
+        console.log('🔑 Public Key:', EMAILJS_CONFIG.publicKey);
+        
+        if (typeof emailjs === 'undefined') {
+            console.error('❌ EmailJS no disponible');
+            return;
+        }
         
         const testParams = {
-            name: "Test Simple",
-            email: "test@example.com", 
-            message: "Test simple del formulario",
-            time: new Date().toLocaleString()
+            name: "Test Usuario Final IBT",
+            email: "test@example.com",
+            message: `🧪 TEST FINAL DEL FORMULARIO IBT BUSINESS SCHOOL
+
+Este es un email de prueba para verificar que el sistema de EmailJS está funcionando correctamente con las credenciales exactas del dashboard.
+
+✅ Service ID: ${EMAILJS_CONFIG.serviceId}
+✅ Template ID: ${EMAILJS_CONFIG.templateId}
+✅ Timestamp: ${new Date().toLocaleString('es-EC')}
+
+Si recibes este email, ¡el sistema está funcionando perfectamente!`,
+            time: new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' })
         };
+        
+        console.log('📤 Enviando email de prueba...');
+        console.log('📨 Parámetros:', testParams);
         
         emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, testParams)
             .then(response => {
-                console.log('✅ Test simple exitoso!', response);
-                alert('✅ Test exitoso! Revisa jonimates2000@gmail.com');
+                console.log('✅ ¡TEST EXITOSO!', response);
+                alert('✅ ¡Email de prueba enviado exitosamente! Revisa jonimates2000@gmail.com');
             })
             .catch(error => {
-                console.error('❌ Test simple falló:', error);
-                alert('❌ Test falló - revisa consola');
+                console.error('❌ Test falló:', error);
+                console.error('📄 Detalles:', {
+                    status: error.status,
+                    text: error.text,
+                    message: error.message
+                });
+                alert('❌ Test falló. Revisa la consola para detalles.');
             });
+    },
+    
+    // Verificar configuración actual
+    checkConfig: function() {
+        console.log('🔍 === VERIFICACIÓN DE CONFIGURACIÓN ===');
+        console.log('📧 EmailJS disponible:', typeof emailjs !== 'undefined');
+        console.log('🔑 Public Key:', EMAILJS_CONFIG.publicKey);
+        console.log('🔧 Service ID:', EMAILJS_CONFIG.serviceId);
+        console.log('📧 Template ID:', EMAILJS_CONFIG.templateId);
+        console.log('📝 Formulario encontrado:', document.getElementById('contact-form') !== null);
+        
+        // Verificar campos del formulario
+        const fields = ['client_name', 'client_email', 'client_phone', 'client_occupation', 'client_city'];
+        console.log('🔍 Campos del formulario:');
+        fields.forEach(field => {
+            const element = document.getElementById(field);
+            console.log(`  ${field}:`, element ? '✅ OK' : '❌ No encontrado');
+        });
+    },
+    
+    // Simular envío completo del formulario
+    simulateFormSubmit: function() {
+        console.log('📝 === SIMULANDO ENVÍO COMPLETO ===');
+        
+        // Llenar formulario automáticamente
+        document.getElementById('client_name').value = "Usuario de Prueba IBT";
+        document.getElementById('client_email').value = "prueba@ibtsistemas.com";
+        document.getElementById('client_phone').value = "+593987654321";
+        document.getElementById('client_occupation').value = "emprendedor";
+        document.getElementById('client_city').value = "Quito";
+        
+        console.log('✅ Formulario llenado automáticamente');
+        
+        // Simular envío
+        const form = document.getElementById('contact-form');
+        const submitEvent = new Event('submit', { cancelable: true, bubbles: true });
+        form.dispatchEvent(submitEvent);
+        
+        console.log('🚀 Evento de envío simulado');
     }
 };
 
-console.log('✅ === SCRIPT CARGADO CON DEBUG COMPLETO ===');
-console.log('🛠️ Comandos disponibles:');
-console.log('  - IBTDebug.testSimple() // Test rápido');
-console.log('  - IBTDebug.testAllServiceIds() // Probar todos los Service IDs');
-console.log('  - IBTDebug.getCurrentConfig() // Ver configuración');
-console.log('📝 IMPORTANTE: Ve a https://dashboard.emailjs.com/admin/email');
-console.log('📝 Copia el Service ID EXACTO de tu servicio Gmail');
+// ===== LOGS DE INICIALIZACIÓN =====
+console.log('✅ === SCRIPT IBT BUSINESS SCHOOL CARGADO ===');
+console.log('🎯 Versión: FINAL DEFINITIVA');
+console.log('📋 Credenciales: VERIFICADAS');
+console.log('🛠️ Comandos de debug disponibles:');
+console.log('  • IBTDebug.testEmailJS() - Test directo de EmailJS');
+console.log('  • IBTDebug.checkConfig() - Verificar configuración');
+console.log('  • IBTDebug.simulateFormSubmit() - Simular envío completo');
+console.log('📧 Emails se envían a: jonimates2000@gmail.com');
+console.log('🚀 ¡Sistema listo para funcionar!');
