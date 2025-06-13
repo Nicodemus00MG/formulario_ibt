@@ -4,7 +4,7 @@ const EMAILJS_CONFIG = {
     serviceId: "service_p9efz9f",                    // ✅ CORREGIDO: agregué la 'z' que faltaba
     
     // 📧 TEMPLATES DUALES - IDs CORRECTOS
-    templateCliente: "template_l45fbgl",             // ✅ Para el CLIENTE (termina en 'i')
+    templateCliente: "template_l45fbgi",             // ✅ Para el CLIENTE (termina en 'i')
     templateEquipo: "template_ho27i8c",              // ✅ Para el EQUIPO/Ing. Ramiro
     
     // 📍 CONFIGURACIÓN
