@@ -3,13 +3,13 @@ const EMAILJS_CONFIG = {
     publicKey: "vCEpn-B_Inhh-QqeM",
     serviceId: "service_p9efz9f",
     
-    // 📧 TEMPLATES DUALES
-    templateCliente: "template_ho27i8c",    // Template para el CLIENTE (guía de IA)
-    templateEquipo: "template_l45fbgl",     // Template para INGENIERO RAMIRO (notificación)
+    // 📧 TEMPLATES DUALES - IDs CORRECTOS
+    templateCliente: "template_l45fbgi",    // Template para el CLIENTE (guía de IA)
+    templateEquipo: "template_ho27i8c",     // Template para INGENIERO RAMIRO (notificación)
     
     // 📍 CONFIGURACIÓN DE EMAILS
     emailEquipo: "jonimates2000@gmail.com",      // Email del Ing. Ramiro
-    guiaDownloadUrl: "https://drive.google.com/uc?export=download&id=TU_FILE_ID_AQUI" // 🔧 CAMBIAR POR TU ENLACE
+    guiaDownloadUrl: "https://drive.google.com/file/d/19WrtQH7UZguUYKdEFpyqMMihA71WZGBv/view" // 🔧 CAMBIAR POR TU ENLACE
 };
 
 // ===== INICIALIZACIÓN =====
@@ -404,8 +404,8 @@ window.IBTDualTest = {
 // ===== LOGS DE INICIALIZACIÓN =====
 console.log('✅ === SCRIPT IBT DUAL - VERSIÓN FINAL ===');
 console.log('🎯 Funcionalidad: ENVÍO DUAL AUTOMÁTICO');
-console.log('📧 Template Cliente:', EMAILJS_CONFIG.templateCliente);
-console.log('📊 Template Equipo:', EMAILJS_CONFIG.templateEquipo);
+console.log('📧 Template Cliente:', EMAILJS_CONFIG.templateCliente, '← template_l45fbgl');
+console.log('📊 Template Equipo:', EMAILJS_CONFIG.templateEquipo, '← template_ho27i8c');
 console.log('🛠️ Comandos de debug:');
 console.log('  • IBTDualTest.testSistemaDual() - Test completo');
 console.log('  • IBTDualTest.verificarConfiguracion() - Verificar setup');
