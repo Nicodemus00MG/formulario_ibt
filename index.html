@@ -7,6 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 🔥 AGREGAR EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -50,12 +54,24 @@
 
                 <!-- Formulario -->
                 <div class="form-section animate-in delay-2">
+                    <!-- Mensaje de éxito -->
                     <div class="success-message" id="successMessage">
                         ¡Gracias! Tu solicitud ha sido enviada. Te contactaremos pronto con tu guía gratuita.
                     </div>
 
-                    <!-- FORMULARIO CORREGIDO PARA NETLIFY -->
-                    <form name="contacto-ibt" method="POST" data-netlify="true" action="./success.html">
+                    <!-- Mensaje de carga -->
+                    <div class="loading-message" id="loadingMessage" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Enviando tu solicitud...</p>
+                    </div>
+
+                    <!-- Mensaje de error -->
+                    <div class="error-message" id="errorMessage" style="display: none;">
+                        Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo.
+                    </div>
+
+                    <!-- FORMULARIO HÍBRIDO: EmailJS + Netlify -->
+                    <form name="contacto-ibt" method="POST" data-netlify="true" action="./success.html" id="contact-form">
                         <!-- Campo oculto para Netlify Forms -->
                         <input type="hidden" name="form-name" value="contacto-ibt" />
                         
@@ -66,20 +82,20 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" name="nombre" placeholder="Nombre" required>
+                                <input type="text" name="nombre" id="client_name" placeholder="Nombre" required>
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="telefono" placeholder="Teléfono" required>
+                                <input type="tel" name="telefono" id="client_phone" placeholder="Teléfono" required>
                             </div>
                         </div>
 
                         <div class="form-group full-width">
-                            <input type="email" name="email" placeholder="Correo electrónico" required>
+                            <input type="email" name="email" id="client_email" placeholder="Correo electrónico" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <select name="ocupacion" required>
+                                <select name="ocupacion" id="client_occupation" required>
                                     <option value="">Ocupación</option>
                                     <option value="estudiante">Estudiante</option>
                                     <option value="empleado">Empleado</option>
@@ -91,12 +107,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="ciudad" placeholder="Ciudad" required>
+                                <input type="text" name="ciudad" id="client_city" placeholder="Ciudad" required>
                             </div>
                         </div>
 
-                        <button type="submit" class="submit-btn">
-                            Obtener Guía Gratis
+                        <button type="submit" class="submit-btn" id="submit-btn">
+                            <span class="btn-text">Obtener Guía Gratis</span>
+                            <span class="btn-loading" id="btn-loading" style="display: none;">Enviando...</span>
                         </button>
                     </form>
                 </div>
@@ -109,6 +126,9 @@
         </div>
     </div>
 
+    <!-- 🔥 CARGAR SCRIPT ACTUALIZADO -->
+    <script src="script.js"></script>
+    
     <script>
         // Animaciones de entrada
         document.addEventListener('DOMContentLoaded', function() {
@@ -118,44 +138,11 @@
             });
         });
 
-        // Manejo del formulario
-        const form = document.querySelector('form[name="contacto-ibt"]');
-        const successMessage = document.getElementById('successMessage');
-        
         // Mostrar mensaje de éxito si viene de redirect
         if (window.location.search.includes('success=true')) {
-            successMessage.style.display = 'block';
-            form.style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('contact-form').style.display = 'none';
         }
-        
-        // Validación del formulario
-        form.addEventListener('submit', function(e) {
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#ff4444';
-                } else {
-                    field.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                }
-            });
-            
-            // Validar email
-            const email = form.querySelector('[name="email"]').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email && !emailRegex.test(email)) {
-                isValid = false;
-                form.querySelector('[name="email"]').style.borderColor = '#ff4444';
-            }
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Por favor, completa todos los campos correctamente.');
-                return false;
-            }
-        });
         
         // Efectos visuales para los campos
         const inputs = document.querySelectorAll('input, select');
