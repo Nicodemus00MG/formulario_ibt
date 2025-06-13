@@ -14,7 +14,7 @@ const EMAILJS_CONFIG = {
     currentServiceId: "service_p9efz9f", // Empezamos con este
     templateCliente: "template_l45fbgl",
     templateEquipo: "template_ho27i8c",
-    emailEquipo: "jonimates2000@gmail.com"
+    emailEquipo: "ramirodiazg09@hotmail.com"
 };
 
 // ===== INICIALIZACIÓN CON DEBUG =====
