@@ -1,7 +1,7 @@
 // ===== CONFIGURACIÓN EMAILJS - PARA VERIFICAR =====
 const EMAILJS_CONFIG = {
     publicKey: "vCEpn-B_Inhh-QqeM",          
-    serviceId: "service_ddujhgi",             // 🔄 VOLVEMOS AL ORIGINAL PARA PROBAR
+    serviceId: "service_p9efz9fi",             // 🔄 VOLVEMOS AL ORIGINAL PARA PROBAR
     templateId: "template_ho27i8c"            
 };
 
