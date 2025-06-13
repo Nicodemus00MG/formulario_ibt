@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBT Business School - Tu Guía de IA está Lista</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Resetear enlaces por defecto */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        a:visited {
+            color: inherit;
+        }
+        
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #1a1a1a;
+        }
+        
+        /* Elementos decorativos de fondo */
+        .bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .bg-circle {
+            position: absolute;
+            border: 3px solid rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .bg-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+        
+        .bg-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            right: -8%;
+            animation-delay: 2s;
+        }
+        
+        .bg-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 30px;
+        }
+        
+        /* Header con mismo estilo del formulario */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .logo {
+            color: #d4af37;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .main-title {
+            color: #d4af37;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 400;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        /* Contenido principal con glassmorphism */
+        .main-content {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .greeting {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #d4af37;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .welcome-message {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        .personal-message {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #d4af37;
+            margin: 25px 0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Sección de descarga destacada */
+        .download-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(244, 208, 63, 0.2) 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border: 3px solid rgba(212, 175, 55, 0.5);
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .download-title {
+            color: #d4af37;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .download-subtitle {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1a1a1a !important;
+            padding: 20px 40px;
+            text-decoration: none !important;
+            border-radius: 10px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            margin: 15px 0;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.6);
+            color: #1a1a1a !important;
+        }
+        
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        
+        .download-btn:visited {
+            color: #1a1a1a !important;
+        }
+        
+        .download-icon {
+            margin-right: 15px;
+            font-size: 1.3em;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* Estilos para enlace alternativo */
+        .alternative-download {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .alternative-download:hover {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        .alternative-link {
+            color: #d4af37 !important;
+            font-weight: 600;
+            text-decoration: underline !important;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding: 2px 0;
+        }
+        
+        .alternative-link:hover {
+            color: #f4d03f !important;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+            border-bottom: 2px solid #d4af37;
+            transform: translateY(-1px);
+        }
+        
+        .alternative-link:visited {
+            color: #d4af37 !important;
+        }
+        
+        /* Estilos para el botón de descarga destacado */
+        .urgent-download-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #e53935 !important;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none !important;
+            font-size: 1rem;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .urgent-download-btn:hover {
+            background: #f5f5f5;
+            color: #d32f2f !important;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        .urgent-download-btn:visited {
+            color: #e53935 !important;
+        }
+        
+        /* Beneficios de la guía */
+        .benefits-section {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #d4af37;
+            margin: 30px 0;
+        }
+        
+        .benefits-title {
+            color: #d4af37;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .benefit-item {
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #d4af37;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(5px);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .benefit-item::before {
+            content: "✅ ";
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        /* Próximos pasos */
+        .next-steps {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin: 30px 0;
+        }
+        
+        .next-steps-title {
+            color: #d4af37;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step-item {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(244, 208, 63, 0.05) 100%);
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a1a1a;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* Sección de contacto */
+        .contact-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(244, 208, 63, 0.1) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .contact-title {
+            color: #d4af37;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .contact-link {
+            color: #d4af37 !important;
+            font-weight: 600;
+            text-decoration: none !important;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            padding: 2px 0;
+        }
+        
+        .contact-link:hover {
+            color: #f4d03f !important;
+            border-bottom: 2px solid #d4af37;
+            transform: translateY(-1px);
+        }
+        
+        .contact-link:visited {
+            color: #d4af37 !important;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            margin-top: 40px;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .footer-brand {
+            color: #d4af37;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer-link {
+            color: #d4af37 !important;
+            font-weight: 600;
+            text-decoration: none !important;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #f4d03f !important;
+            border-bottom: 2px solid #d4af37;
+            transform: translateY(-1px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .footer-link:visited {
+            color: #d4af37 !important;
+        }
+        
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .main-content, .download-section {
+                padding: 25px 20px;
+            }
+            
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .download-btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .step-item {
+                padding: 12px 15px;
+            }
+        }
+        
+        @media only screen and (max-width: 480px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .greeting {
+                font-size: 1.3rem;
+            }
+            
+            .download-title {
+                font-size: 1.5rem;
+            }
+            
+            .download-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Elementos decorativos de fondo -->
+        <div class="bg-elements">
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+        </div>
+        
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+              <div class="logo"><img src="https://edu-ibt.com/wp-content/uploads/logo-nuevo-blanco-01-1.png" alt=""></div>
+                <h1 class="main-title">¡Tu Futuro Comienza Hoy!</h1>
+                <p class="subtitle">Tu guía gratuita de IA está lista para descargar</p>
+            </div>
+            
+            <!-- Contenido principal -->
+            <div class="main-content">
+                <div class="greeting">¡Hola {{client_name}}! 🎉</div>
+                
+                <div class="welcome-message">
+                    <strong>¡Gracias por unirte a la revolución de la Inteligencia Artificial!</strong>
+                    <br><br>
+                    Nos emociona saber que estás listo para dar el siguiente paso en tu carrera profesional. Como prometimos, aquí tienes tu guía completamente gratuita y actualizada.
+                </div>
+                
+                <div class="personal-message">
+                    <strong>Hola {{client_name}},</strong>
+                    <br><br>
+                    Veo que eres <strong>{{client_occupation}}</strong> en <strong>{{client_city}}</strong>, ¡perfecto! Esta guía está diseñada específicamente para personas como tú que buscan transformar su futuro profesional a través de la Inteligencia Artificial.
+                    <br><br>
+                    El mundo está cambiando rápidamente, y quienes se adapten primero tendrán las mejores oportunidades. <em>¡Tú ya diste el primer paso!</em>
+                </div>
+            </div>
+            
+            <!-- Sección de descarga -->
+            <div class="download-section">
+                <div class="download-title">📚 Descarga Tu Guía Exclusiva</div>
+                <div class="download-subtitle">
+                    <strong>"¿Quieres Trabajar en la Inteligencia Artificial?"</strong><br>
+                    Guía completa con estrategias reales, oportunidades del mercado y pasos concretos para triunfar
+                </div>
+                
+                <!-- 🚨 ALERTA DESTACADA PARA LA DESCARGA -->
+                <div style="background: linear-gradient(135deg, #f44336 0%, #e53935 100%); padding: 20px; border-radius: 12px; margin: 25px 0; border: 2px solid #d32f2f; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent); animation: shimmer 2s infinite;"></div>
+                    <div style="position: relative; z-index: 2;">
+                        <p style="color: #ffffff; font-weight: 700; font-size: 1.1rem; margin-bottom: 15px; text-align: center;">
+                            🚨 <strong>¡DESCARGA INMEDIATA DISPONIBLE!</strong> 🚨
+                        </p>
+                        <p style="color: #ffffff; font-size: 0.95rem; text-align: center; margin-bottom: 15px;">
+                            Tu guía PDF está lista. Click en cualquiera de los enlaces abajo:
+                        </p>
+                        
+                        <!-- ENLACE PRINCIPAL SÚPER DESTACADO -->
+                        <div style="text-align: center;">
+                            <a href="https://drive.google.com/file/d/19WrtQH7UZguUYKdEFpyqMMihA71WZGBv/view?usp=sharing" target="_blank" rel="noopener" class="urgent-download-btn">
+                                📥 DESCARGAR GUÍA AHORA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            
+                
+              
+                
+                <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8); text-align: center;">
+                    <em>📱 Compatible con móviles y desktop • 📄 Formato PDF optimizado • 🔒 Descarga 100% segura</em>
+                    <br><br>
+                    <strong style="color: #d4af37;">💡 Tip:</strong> Guarda el enlace en tus favoritos para acceso futuro
+                </div>
+            </div>
+            
+            <!-- Beneficios de la guía -->
+            <div class="benefits-section">
+                <div class="benefits-title">🎯 Lo que descubrirás en tu guía:</div>
+                <div class="benefits-grid">
+                    <div class="benefit-item">Oportunidades reales en el mercado actual</div>
+                    <div class="benefit-item">Habilidades más demandadas por empresas</div>
+                    <div class="benefit-item">Salarios promedio en diferentes roles</div>
+                    <div class="benefit-item">Pasos concretos para iniciar tu transición</div>
+                    <div class="benefit-item">Recursos y herramientas recomendadas</div>
+                    <div class="benefit-item">Casos de éxito inspiradores</div>
+                    <div class="benefit-item">Tendencias futuras del sector</div>
+                    <div class="benefit-item">Cómo destacar entre la competencia</div>
+                </div>
+            </div>
+            
+            <!-- Próximos pasos -->
+            <div class="next-steps">
+                <div class="next-steps-title">🚀 Tu Plan de Acción Recomendado</div>
+                <div class="step-item">
+                    <span class="step-number">1</span>
+                    <strong>Descarga y estudia tu guía completa</strong> - Dedica al menos 30 minutos para absorber toda la información
+                </div>
+                <div class="step-item">
+                    <span class="step-number">2</span>
+                    <strong>Identifica tu área de interés en IA</strong> - Machine Learning, Data Science, Computer Vision, etc.
+                </div>
+                <div class="step-item">
+                    <span class="step-number">3</span>
+                    <strong>Evalúa tu perfil actual</strong> - Revisa qué habilidades tienes y cuáles necesitas desarrollar
+                </div>
+                <div class="step-item">
+                    <span class="step-number">4</span>
+                    <strong>Mantente conectado con nosotros</strong> - Próximamente tendremos programas especializados
+                </div>
+            </div>
+            
+            <div class="personal-message">
+                <strong>{{client_name}}, esto es solo el comienzo...</strong>
+                <br><br>
+                En <strong>IBT Business School</strong> estamos comprometidos con tu éxito. Esta guía es nuestro regalo para ti, pero tenemos mucho más preparado para quienes realmente quieren transformar su vida profesional.
+                <br><br>
+                <em>¿Tienes preguntas sobre la guía o quieres saber más sobre nuestros programas? ¡Escríbenos!</em>
+            </div>
+            
+            <!-- Sección de contacto -->
+            <div class="contact-section">
+                <div class="contact-title">💬 ¿Necesitas ayuda personalizada?</div>
+                <div class="contact-info">
+                    Nuestro equipo está disponible para resolver tus dudas<br>
+                    y ayudarte a planificar tu carrera en IA
+                    <br><br>
+                    📧 <a href="mailto:info@edu-ibt.com?subject=Consulta sobre Guía de IA&body=Hola, descargué la guía de IA y me gustaría saber más sobre..." class="contact-link">info@edu-ibt.com</a><br>
+                    🌐 <a href="https://edu-ibt.com" class="contact-link" target="_blank">Visita nuestro sitio web</a><br>
+                    📱 <a href="https://wa.me/593999123456?text=Hola, descargué la guía de IA y me interesa saber más" class="contact-link" target="_blank">WhatsApp directo</a>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p class="footer-text">
+                    Gracias por confiar en IBT Business School para tu desarrollo profesional.<br>
+                    Registrado el {{current_date}} a las {{current_time}}
+                </p>
+               <div class="logo"><img src="https://edu-ibt.com/wp-content/uploads/logo-nuevo-blanco-01-1.png" alt=""></div>
+                <p style="margin-top: 10px;">
+                    El futuro de tu negocio comienza <a href="https://edu-ibt.com" class="footer-link" target="_blank">AQUÍ</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
