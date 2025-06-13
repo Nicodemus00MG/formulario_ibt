@@ -1,7 +1,7 @@
 // ===== CONFIGURACIÓN EMAILJS DUAL CORREGIDA =====
 const EMAILJS_CONFIG = {
     publicKey: "vCEpn-B_Inhh-QqeM",
-    serviceId: "service_p9ef29f",                    // ✅ Corregido desde imagen
+    serviceId: "service_p9efz9f",                    // ✅ Corregido desde imagen
     
     // 📧 TEMPLATES DUALES - IDs CORRECTOS
     templateCliente: "template_l45fbgi",             // ✅ Para el CLIENTE (termina en 'i')
