@@ -1,8 +1,8 @@
 // ===== CONFIGURACIÓN EMAILJS =====
 const EMAILJS_CONFIG = {
     publicKey: "vCEpn-B_Inhh-QqeM",        // ✅ Tu Public Key actual
-    serviceId: "service_ddujhgi",           // ✅ Tu Service ID actual  
-    templateId: "Contact Us"     // 🔥 CAMBIA ESTO por tu Template ID correcto
+    serviceId: "service_p9ef29f",           // ✅ Tu Service ID actual  
+    templateId: "template_ho27i8c"     // 🔥 CAMBIA ESTO por tu Template ID correcto
 };
 
 // ===== CONFIGURACIÓN DE LA APLICACIÓN =====
