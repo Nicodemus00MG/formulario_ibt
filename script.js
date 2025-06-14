@@ -8,8 +8,8 @@ const EMAILJS_CONFIG = {
     templateEquipo: "template_ho27i8c",              // ✅ Para el EQUIPO/Ing. Ramiro
     
     // 📍 CONFIGURACIÓN
-    emailEquipo: "ramirodiazg09@hotmail.com",          // Email actual del equipo
-    guiaDownloadUrl: "https://drive.google.com/uc?export=download&id=TU_FILE_ID_AQUI" // 🔧 CAMBIAR
+    emailEquipo: "jonimates2000@gmail.com",          // Email actual del equipo
+    guiaDownloadUrl: "https://drive.google.com/file/d/19WrtQH7UZguUYKdEFpyqMMihA71WZGBv/view" // 🔧 CAMBIAR
 };
 
 // ===== INICIALIZACIÓN =====
